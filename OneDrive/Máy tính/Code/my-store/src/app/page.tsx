@@ -1,18 +1,32 @@
-//import { Button } from "@/components/ui/button"; // Chúng ta sẽ tạo cái này sau, tạm thời cứ để comment hoặc xóa dòng này nếu báo lỗi
-import { ShoppingCart } from "lucide-react";
+import BookCard from "@/app/components/BookCard";
+import HeroSection from "@/app/components/HeroSection";
+import { books } from "@/app/lib/placeholder-data";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <h1 className="text-4xl font-bold text-blue-600">
-        BookStore Project
-      </h1>
-      <p className="text-gray-500">Dự án bán sách bắt đầu từ hôm nay!</p>
-      
-      <button className="flex items-center gap-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-        <ShoppingCart size={20} />
-        Mua ngay
-      </button>
+    <div className="container mx-auto px-4 py-8">
+      <HeroSection />
+      <div className = "my-12" id="books" >
+      {/* Tiêu đề mục */}
+      <div className="mb-8 flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-gray-900">Sách Mới Nổi Bật</h2>
+        <a href="#" className="text-blue-600 hover:underline">Xem tất cả &rarr;</a>
+      </div>
+
+      {/* Lưới sản phẩm (Grid System) */}
+      <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {books.map((book) => (
+          <BookCard
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            price={book.price}
+            image={book.image}
+          />
+        ))}
+        </div>
+      </div>
     </div>
   );
 }
